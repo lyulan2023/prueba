@@ -12,6 +12,12 @@
 
 
       <div id="columna1">
+        <p>Formulario de consulta </p>
+        <form action="pagina2.php" method="post">
+    Ingrese el mail del alumno:
+    <input type="text" name="mail"><br>
+    <input type="submit" value="buscar">
+  </form>
       <form action="pagina2.php" method="post">
     Ingrese nombre:
     <input type="text" name="nombre"><br>
@@ -19,13 +25,14 @@
     <input type="text" name="mail"><br>
     Seleccione el curso:
     <select name="codigocurso">
-      <option value="1">PHP</option>
+      <option value="1">Javascript</option>
       <option value="2">ASP</option>
       <option value="3">JSP</option>
     </select>
     <br>
     <input type="submit" value="Registrar">
   </form>
+  
         
         <br> Color de fuente:
         <select onChange="cambiarColorFuente()" id="colorfuente">

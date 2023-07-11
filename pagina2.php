@@ -6,19 +6,29 @@
 
 <body>
 <?php
+
   $conexion = mysqli_connect("localhost", "root", "", "base1") or
     die("Problemas con la conexión");
 
-  mysqli_query($conexion, "insert into alumnos(nombre,mail,codigocurso) values 
-                       ('$_REQUEST[nombre]','$_REQUEST[mail]',$_REQUEST[codigocurso])")
-    or die("Problemas en el select" . mysqli_error($conexion));
+  $registros = mysqli_query($conexion, "select * from alumnos
+                        where mail='$_REQUEST[mail]'") or
+    die("Problemas en el select:" . mysqli_error($conexion));
+  if ($reg = mysqli_fetch_array($registros)) {
+    ?>
 
-  mysqli_close($conexion);
+    <form action="pagina3.php" method="post">
+      Ingrese nuevo mail:
+      <input type="text" name="mailnuevo" value="<?php echo $reg['mail'] ?>">
+      <br>
+      <input type="hidden" name="mailviejo" value="<?php echo $reg['mail'] ?>">
+      <input type="submit" value="Modificar">
+    </form>
 
-  echo "El alumno fue registrado.";
-  header('Location:index.php')
-
+  <?php
+  } else
+    echo "No existe alumno con dicho mail";
   ?>
+
 
 </body>
 
